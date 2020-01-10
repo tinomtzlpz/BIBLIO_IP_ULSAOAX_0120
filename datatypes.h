@@ -11,6 +11,13 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+    
+    typedef struct
+    {
+        unsigned short int dia;
+        unsigned short int mes;
+        unsigned short int anio;
+    } fecha;
 
     typedef enum
     {
