@@ -27,7 +27,7 @@ extern "C" {
         unsigned int matricula;
         char nombre[50];
         carreras carrera;
-    } usuario;
+    }   usuario;
     
     //Estructura Libro//
     typedef struct{
