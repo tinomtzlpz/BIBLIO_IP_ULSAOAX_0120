@@ -34,7 +34,7 @@ extern "C" {
         carreras carrera;
     } usuario;
     
-    \\Estructura Libro\\
+    //Estructura Libro//
     typedef struct{
 	    unsigned int id_ejemplar;
 	    char isbn[15];
