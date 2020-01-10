@@ -41,12 +41,18 @@ extern "C" {
 	//ESTRUCTURA PRESTAMO
 	typedef struct
     {
-	unsigned matricula;
-	unsigned idejemplo;
-        unsigned short int dia;
-        unsigned short int mes;
-        unsigned short int anio;
+	unsigned int matricula;
+	unsigned int id_ejemplo;
+        fecha fecha_prestamo;
+	fecha fecha_devolucion;
     } prestamo;
+	
+	typedef struct
+	{
+	unsigned short int dia;
+	unsigned short int mes;
+	unsigned short int anio;	
+	}fecha;
 
 #ifdef	__cplusplus
 }
