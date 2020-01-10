@@ -12,12 +12,7 @@
 extern "C" {
 #endif
     
-    typedef struct
-    {
-        unsigned short int dia;
-        unsigned short int mes;
-        unsigned short int anio;
-    } fecha;
+    
 
     typedef enum
     {
@@ -43,6 +38,15 @@ extern "C" {
 	    char editorial[100];
 	    unsigned int anio_edicion;
     }libro;
+	//ESTRUCTURA PRESTAMO
+	typedef struct
+    {
+	unsigned matricula;
+	unsigned idejemplo;
+        unsigned short int dia;
+        unsigned short int mes;
+        unsigned short int anio;
+    } prestamo;
 
 #ifdef	__cplusplus
 }
