@@ -33,6 +33,16 @@ extern "C" {
         char nombre[50];
         carreras carrera;
     } usuario;
+    
+    \\Estructura Libro\\
+    typedef struct{
+	    unsigned int id_ejemplar;
+	    char isbn[15];
+	    char titulo[100];
+	    char autor[150];
+	    char editorial[100];
+	    unsigned int anio_edicion;
+    }libro;
 
 #ifdef	__cplusplus
 }
