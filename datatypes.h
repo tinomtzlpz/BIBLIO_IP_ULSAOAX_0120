@@ -45,7 +45,7 @@ extern "C" {
         char autor[150];
         char editorial[100];
         unsigned int anio_edicion;
-} libro;
+    } libro;
 
     //ESTRUCTURA PRESTAMO
     typedef struct
