@@ -24,22 +24,31 @@ extern "C" {
 
     typedef struct
     {
+        unsigned short int dia;
+        unsigned short int mes;
+        unsigned short int anio;	
+    } fecha;
+
+    typedef struct
+    {
         unsigned int matricula;
         char nombre[50];
         carreras carrera;
     }   usuario;
     
     //Estructura Libro//
-    typedef struct{
-	    unsigned int id_ejemplar;
-	    char isbn[15];
-	    char titulo[100];
-	    char autor[150];
-	    char editorial[100];
-	    unsigned int anio_edicion;
-    }libro;
-	//ESTRUCTURA PRESTAMO
-	typedef struct
+    typedef struct
+    {
+        unsigned int id_ejemplar;
+        char isbn[15];
+        char titulo[100];
+        char autor[150];
+        char editorial[100];
+        unsigned int anio_edicion;
+} libro;
+
+    //ESTRUCTURA PRESTAMO
+    typedef struct
     {
 	unsigned int matricula;
 	unsigned int id_ejemplo;
@@ -47,16 +56,9 @@ extern "C" {
 	fecha fecha_devolucion;
     } prestamo;
 	
-	typedef struct
-	{
-	unsigned short int dia;
-	unsigned short int mes;
-	unsigned short int anio;	
-	}fecha;
 
 #ifdef	__cplusplus
 }
 #endif
 
 #endif	/* DATATYPES_H */
-
