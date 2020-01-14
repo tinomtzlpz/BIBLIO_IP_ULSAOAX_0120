@@ -60,6 +60,7 @@ extern "C" {
     void admon_libros();
     void admon_usuarios();
     void carga_datos_de_archivos();
+    void guarda_datos_en_archivos();
 
 #ifdef	__cplusplus
 }
