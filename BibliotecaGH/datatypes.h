@@ -13,6 +13,11 @@ extern "C" {
 #endif
     
     
+    #define MAX_ELEMENTOS_ARRAY 10
+    #define ARCHIVO_USUARIOS  "usuarios.est"
+    #define ARCHIVO_LIBROS "libros.est"
+    #define ARCHIVO_PRESTAMOS "prestamos.est"
+    #define NO_VALIDO "Dato Invalido"
 
     typedef enum
     {
@@ -61,6 +66,14 @@ extern "C" {
     void admon_usuarios();
     void carga_datos_de_archivos();
     void guarda_datos_en_archivos();
+    
+    /*
+     * Variables globales 
+     */
+
+    usuario array_de_usuarios[MAX_ELEMENTOS_ARRAY];
+    libro array_de_libros[MAX_ELEMENTOS_ARRAY];
+    prestamo array_de_prestamos[MAX_ELEMENTOS_ARRAY];
 
 #ifdef	__cplusplus
 }
