@@ -72,7 +72,7 @@ void carga_datos_de_archivos()
             for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
             {
                 array_de_prestamos[i].matricula = 0;
-                array_de_prestamos[i].id_ejemplar = 0;
+                array_de_prestamos[i].estado_actual = invalido;
             }        
     }
     // Leer el contenido del archivo
