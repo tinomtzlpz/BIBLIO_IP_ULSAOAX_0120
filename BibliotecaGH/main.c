@@ -9,14 +9,16 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <string.h>
 #include "datatypes.h"
 /*
  * Variables globales 
  */
 #define MAX_ELEMENTOS_ARRAY 10
 #define ARCHIVO_USUARIOS  "usuarios.est"
-#define ARCHIVO_LIBROS "libros.est2"
+#define ARCHIVO_LIBROS "libros.est"
 #define ARCHIVO_PRESTAMOS "prestamos.est"
+#define NO_VALIDO "Dato Invalido"
 
 usuario array_de_usuarios[MAX_ELEMENTOS_ARRAY];
 libro array_de_libros[MAX_ELEMENTOS_ARRAY];
@@ -68,13 +70,14 @@ int main(int argc, char** argv) {
                         break;
             default:
                         system("clear");
+                        guarda_datos_en_archivos();
                         printf("\n\n\nGracias por usar el programa de administracion de biblioteca\n");
-                        //fflush(stdin);
+                        fflush(stdin);
                         exit(EXIT_SUCCESS);
                         break;
         }
     }while(1);
-
+    
     return (EXIT_SUCCESS);
 }
 
@@ -82,54 +85,7 @@ void admon_prestamos()
 {
     unsigned short int i=0;
 
-//    prestamo prestamos_desde_archivo[MAX_ELEMENTOS_ARRAY]; //Este array contendra los datos del archivo binario
-//    FILE *pArchivo;
-//    
-//    /* Abrir archivo binario para escribir los datos*/
-//    pArchivo = fopen(ARCHIVO_PRESTAMOS,"wb");
-//    if(pArchivo==NULL)
-//    {
-//        printf("\nError al abrir el archivo prestamos.est");
-//        exit(1);
-//    }
-//    //El arcivo se abrio correctamente
-//    
-//    /* Obtener los datos de los prestamos */
-//    for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
-//    {
-//        printf("Matricula del usuario: "); fflush(stdin);
-//        scanf("%d", &array_de_prestamos[i].matricula);
-//        printf("Identificador de ejemplar del libro: "); fflush(stdin);
-//        scanf("%d", &array_de_prestamos[i].id_ejemplar);
-//        printf("Fecha de prestamo\n"); fflush(stdin);
-//        printf("Dia [1-31]: "); fflush(stdin);
-//        scanf("%d", &array_de_prestamos[i].fecha_prestamo.dia);
-//        printf("Mes [1-12]: "); fflush(stdin);
-//        scanf("%d", &array_de_prestamos[i].fecha_prestamo.mes);
-//        printf("Año [Ejemp. 2020]: "); fflush(stdin);
-//        scanf("%d", &array_de_prestamos[i].fecha_prestamo.anio);
-//        printf("Fecha de devolucion\n"); fflush(stdin);
-//        printf("Dia [1-31]: "); fflush(stdin);
-//        scanf("%d", &array_de_prestamos[i].fecha_prestamo.dia);
-//        printf("Mes [1-12]: "); fflush(stdin);
-//        scanf("%d", &array_de_prestamos[i].fecha_prestamo.mes);
-//        printf("Año [Ejemp. 2020]: "); fflush(stdin);
-//        scanf("%d", &array_de_prestamos[i].fecha_prestamo.anio);
-//    }
-//    /* Escribir los datos de los prestamos al archivo */
-//    fwrite(array_de_prestamos,sizeof(prestamo),10,pArchivo);
-//    fclose(pArchivo); //Cerrar el archivo
-//    
-//    /* Abrir el archivo binario en modo lectura */
-//    pArchivo = fopen(ARCHIVO_PRESTAMOS,"rb");
-//    if(pArchivo==NULL)
-//    {
-//        printf("\nError al abrir el archivo prestamos.est");
-//        exit(1);
-//    }
-//    /* Leer el contenido del archivo */
-//    fread(prestamos_desde_archivo, sizeof(prestamo),10,pArchivo);
-    /* Mostrar los datos leidos desde el archivo */
+    /* Mostrar los datos que están en el array correspondiente */
     system("clear");
     printf("Informacion de prestamos obtenida desde el archivo:\n\n");
     for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
@@ -142,19 +98,68 @@ void admon_prestamos()
         printf("\tFecha de devolucion [dd/m/aaaa]: %02d/%02d/%04d\n\n\n\n",array_de_prestamos[i].fecha_devolucion.dia, \
                 array_de_prestamos[i].fecha_devolucion.mes,array_de_prestamos[i].fecha_devolucion.anio); fflush(stdin);
     }
-    printf("\n\nCerrando archivo y regresando a menu principal");
-    sleep(15);
+    sleep(8);
+    printf("\n\nCerrando archivo y regresando a menu principal"); fflush(stdin);
+    sleep(1);
     system("clear");
-    //Determinar cuantos registros existen en el archivo
-    //Crear un arreglo de tantos elementos como registros hay eel archivo
-    //Desplegar el menu
-    
+    printf("\n"); fflush(stdin);   
 }
 
 void carga_datos_de_archivos()
 {
     FILE *pArchivoUsuarios=NULL, *pArchivoLibros=NULL, *pArchivoPrestamos=NULL;
     int i = 0;
+
+    /***** Bloque de archivo de usuarios *****/
+    pArchivoUsuarios = fopen(ARCHIVO_USUARIOS,"rb");
+    if(pArchivoUsuarios == NULL)
+    {
+        //El archivo no se pudo abrir (no existe)
+        //Crear el archivo para escritura e inicializar el array correspondiente
+            pArchivoUsuarios = fopen(ARCHIVO_USUARIOS,"wb");
+            if(pArchivoUsuarios == NULL)
+            {
+                printf("\nError al abrir el archivo %s", ARCHIVO_USUARIOS );
+                exit(1);           
+            }
+            for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
+            {
+                array_de_usuarios[i].matricula = 0;
+                array_de_usuarios[i].carrera = 19;
+                strcpy(array_de_usuarios[i].nombre, NO_VALIDO);
+            }        
+    }
+    // Leer el contenido del archivo
+    fread(array_de_usuarios, sizeof(usuario),MAX_ELEMENTOS_ARRAY,pArchivoUsuarios);
+    fclose(pArchivoUsuarios);
+
+    /***** Bloque de archivo de libros *****/
+    pArchivoLibros = fopen(ARCHIVO_LIBROS,"rb");
+    if(pArchivoLibros == NULL)
+    {
+        //El archivo no se pudo abrir (no existe)
+        //Crear el archivo para escritura e inicializar el array correspondiente
+            pArchivoLibros = fopen(ARCHIVO_LIBROS,"wb");
+            if(pArchivoLibros == NULL)
+            {
+                printf("\nError al abrir el archivo %s", ARCHIVO_LIBROS );
+                exit(1);           
+            }
+            for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
+            {
+                array_de_libros[i].id_ejemplar = 0;
+                strcpy(array_de_libros[i].titulo, NO_VALIDO);
+                strcpy(array_de_libros[i].autor, NO_VALIDO);
+                strcpy(array_de_libros[i].editorial, NO_VALIDO);
+                strcpy(array_de_libros[i].isbn, NO_VALIDO);
+                array_de_libros[i].anio_edicion = 1900;
+            }        
+    }
+    // Leer el contenido del archivo
+    fread(array_de_libros, sizeof(libro),MAX_ELEMENTOS_ARRAY,pArchivoLibros);
+    fclose(pArchivoLibros);
+    
+    /***** Bloque de archivo de prestamos *****/
     pArchivoPrestamos = fopen(ARCHIVO_PRESTAMOS,"rb");
     if(pArchivoPrestamos == NULL)
     {
@@ -163,7 +168,7 @@ void carga_datos_de_archivos()
             pArchivoPrestamos = fopen(ARCHIVO_PRESTAMOS,"wb");
             if(pArchivoPrestamos == NULL)
             {
-                printf("\nError al abrir el archivo prestamos.est");
+                printf("\nError al abrir el archivo %s", ARCHIVO_PRESTAMOS );
                 exit(1);           
             }
             for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
@@ -172,7 +177,43 @@ void carga_datos_de_archivos()
                 array_de_prestamos[i].id_ejemplar = 0;
             }        
     }
-    /* Leer el contenido del archivo */
-    fread(array_de_prestamos, sizeof(prestamo),10,pArchivoPrestamos);
+    // Leer el contenido del archivo
+    fread(array_de_prestamos, sizeof(prestamo),MAX_ELEMENTOS_ARRAY,pArchivoPrestamos);
     fclose(pArchivoPrestamos);
+}
+
+void guarda_datos_en_archivos()
+{
+    FILE *pArchivoUsuarios=NULL, *pArchivoLibros=NULL, *pArchivoPrestamos=NULL;
+
+    /***** Bloque de archivo de usuarios *****/
+    pArchivoUsuarios = fopen(ARCHIVO_USUARIOS,"wb");
+    if(pArchivoUsuarios == NULL)
+    {
+        printf("\nError al abrir el archivo %s", ARCHIVO_USUARIOS );
+        exit(1);           
+    }
+    fwrite(array_de_usuarios, sizeof(usuario), MAX_ELEMENTOS_ARRAY, pArchivoUsuarios);
+    fclose(pArchivoUsuarios);
+    
+    /***** Bloque de archivo de libros *****/
+    pArchivoLibros = fopen(ARCHIVO_LIBROS,"wb");
+    if(pArchivoLibros == NULL)
+    {
+        printf("\nError al abrir el archivo %s", ARCHIVO_LIBROS );
+        exit(1);           
+    }
+    fwrite(array_de_libros, sizeof(libro), MAX_ELEMENTOS_ARRAY, pArchivoLibros);
+    fclose(pArchivoLibros);
+
+    /***** Bloque de archivo de prestamos *****/
+    pArchivoPrestamos = fopen(ARCHIVO_PRESTAMOS,"wb");
+    if(pArchivoPrestamos == NULL)
+    {
+        printf("\nError al abrir el archivo %s", ARCHIVO_PRESTAMOS );
+        exit(1);           
+    }
+    fwrite(array_de_prestamos, sizeof(prestamo), MAX_ELEMENTOS_ARRAY, pArchivoPrestamos);
+    fclose(pArchivoPrestamos);
+    
 }
