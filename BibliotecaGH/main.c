@@ -12,7 +12,40 @@
 #include <string.h>
 #include "datatypes.h"
 
+const char *name_dayweek[10] =
+{
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miercoles",
+    "Jueves",
+    "Viernes",
+    "Sabado"
+};
 
+const char *lista_carreras[20] =
+{
+    "Contaduria",
+    "Negocios",
+    "Arquitectura",
+    "Enfermeria",
+    "Fisioterapia",
+    "Psicologia",
+    "Nutricion",
+    "Deporte",
+    "Artes",
+    "Comunicacion",
+    "Derecho",
+    "Educacion",
+    "Gastronomia",
+    "Turismo",
+    "Lenguas",
+    "Electronica",
+    "Sistemas",
+    "Industrial",
+    "Civil",
+    "Ambiental"
+};
 
 int main(int argc, char** argv) {
     

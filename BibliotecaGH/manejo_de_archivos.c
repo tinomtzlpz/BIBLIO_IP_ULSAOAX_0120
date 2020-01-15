@@ -3,6 +3,9 @@
 #include <string.h>
 #include "datatypes.h"
 
+extern const char *name_dayweek[];
+extern const char *lista_carreras[];
+
 void carga_datos_de_archivos()
 {
     FILE *pArchivoUsuarios=NULL, *pArchivoLibros=NULL, *pArchivoPrestamos=NULL;

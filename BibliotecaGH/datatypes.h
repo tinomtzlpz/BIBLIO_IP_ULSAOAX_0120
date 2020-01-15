@@ -32,7 +32,7 @@ extern "C" {
         unsigned short int dia;
         unsigned short int mes;
         unsigned short int anio;
-	char dias_semana[11];
+	char dias_semana[10];
     } 
     fecha;
 	
@@ -84,6 +84,41 @@ extern "C" {
     libro array_de_libros[MAX_ELEMENTOS_ARRAY];
     prestamo array_de_prestamos[MAX_ELEMENTOS_ARRAY];
 
+//    const char *name_dayweek[10] =
+//    {
+//        "Domingo",
+//        "Lunes",
+//        "Martes",
+//        "Miercoles",
+//        "Jueves",
+//        "Viernes",
+//        "Sabado"
+//    };
+//    
+//    const char *lista_carreras[20] =
+//    {
+//        "Contaduria",
+//        "Negocios",
+//        "Arquitectura",
+//        "Enfermeria",
+//        "Fisioterapia",
+//        "Psicologia",
+//        "Nutricion",
+//        "Deporte",
+//        "Artes",
+//        "Comunicacion",
+//        "Derecho",
+//        "Educacion",
+//        "Gastronomia",
+//        "Turismo",
+//        "Lenguas",
+//        "Electronica",
+//        "Sistemas",
+//        "Industrial",
+//        "Civil",
+//        "Ambiental"
+//    };
+    
 #ifdef	__cplusplus
 }
 #endif

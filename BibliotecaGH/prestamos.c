@@ -11,6 +11,9 @@
 #include <unistd.h>
 #include "datatypes.h"
 
+extern const char *name_dayweek[];
+extern const char *lista_carreras[];
+
 void admon_prestamos()
 {
     unsigned short int i=0;
