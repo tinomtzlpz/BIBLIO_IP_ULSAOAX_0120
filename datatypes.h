@@ -31,8 +31,16 @@ extern "C" {
     {
         unsigned short int dia;
         unsigned short int mes;
-        unsigned short int anio;	
-    } fecha;
+        unsigned short int anio;
+	char dias_semana[11];
+    } 
+    fecha;
+	
+    typedef enum
+    {
+        invalido,vigente,vencido,devuelto
+    }
+    estado_prestamo;
 
     typedef struct
     {
@@ -59,6 +67,7 @@ extern "C" {
 	unsigned int id_ejemplar;
         fecha fecha_prestamo;
 	fecha fecha_devolucion;
+	estado_prestamo estado_actual;
     } prestamo;
 	
     void admon_prestamos();
