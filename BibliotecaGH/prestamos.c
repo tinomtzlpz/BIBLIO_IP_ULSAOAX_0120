@@ -5,6 +5,7 @@
 #include <time.h>
 #include <string.h>
 #include "datatypes.h"
+extern const char *name_dayweek[];
 
 void ingresar_datos_prestamo();
 void ingresa_compara_matriculas(short int *contador,short int i);
@@ -167,25 +168,25 @@ void dar_fecha_prestamo(short int i)
     switch(tlocal->tm_wday)
     {
         case 0:
-            strcpy(aux,name_week[0]);
+            strcpy(aux,name_dayweek[0]);
             break;
         case 1:  
-            strcpy(aux,name_week[1]);
+            strcpy(aux,name_dayweek[1]);
             break;
         case 2:
-            strcpy(aux,name_week[2]);
+            strcpy(aux,name_dayweek[2]);
             break;
         case 3:
-            strcpy(aux,name_week[3]);
+            strcpy(aux,name_dayweek[3]);
             break;
         case 4:
-            strcpy(aux,name_week[4]);
+            strcpy(aux,name_dayweek[4]);
             break;
         case 5:
-            strcpy(aux,name_week[5]);
+            strcpy(aux,name_dayweek[5]);
             break;
         case 6:
-            strcpy(aux,name_week[6]);
+            strcpy(aux,name_dayweek[6]);
             break;
     }
     strcpy(array_de_prestamos[i].fecha_prestamo.dias_semana,aux);
@@ -214,25 +215,25 @@ void dar_fecha_devolucion(short int i)
     switch(new_dayweek)
     {
         case 0:
-           strcpy(aux,name_week[0]);
-           break;
+            strcpy(aux,name_dayweek[0]);
+            break;
         case 1:  
-            strcpy(aux,name_week[1]);
+            strcpy(aux,name_dayweek[1]);
             break;
         case 2:
-            strcpy(aux,name_week[2]);
+            strcpy(aux,name_dayweek[2]);
             break;
         case 3:
-            strcpy(aux,name_week[3]);
+            strcpy(aux,name_dayweek[3]);
             break;
         case 4:
-            strcpy(aux,name_week[4]);
+            strcpy(aux,name_dayweek[4]);
             break;
         case 5:
-            strcpy(aux,name_week[5]);
+            strcpy(aux,name_dayweek[5]);
             break;
         case 6:
-            strcpy(aux,name_week[6]);
+            strcpy(aux,name_dayweek[6]);
             break;
     }
     strcpy(array_de_prestamos[i].fecha_devolucion.dias_semana,aux);
@@ -372,4 +373,6 @@ void terminar_prestamo(){
         }
     }
 }
+
+
 
