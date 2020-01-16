@@ -476,6 +476,7 @@ void terminar_prestamo()
                 break;
         }
         printf("\n\t!Devolucion Completada¡\n   ...regresando a menu PRESTAMO\n");fflush(stdin);
+        sleep(10);
     }
     
 }
