@@ -34,7 +34,7 @@ void admon_prestamos()
 //                            printf("%u\n\n",array_de_libros[i].id_ejemplar);
 //                        }
     unsigned int matricula;
-    comparar_matriculas(&matricula);                    
+    comparar_matriculas();                    
     actualizar_estado_prestamos(&matricula);
     char elegir='a',a;
     short int salida=0;
