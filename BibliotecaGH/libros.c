@@ -10,11 +10,11 @@ void admon_libros_listar();
 void admon_libros_buscar();
 void cambiar();
 
-int main(int argc, char** argv) {
+/*int main(int argc, char** argv) {
     carga_datos_de_archivos();
     admon_libros();
     return (0);
-}
+}*/
 
 void admon_libros(){
     char opcion = '0', c;
