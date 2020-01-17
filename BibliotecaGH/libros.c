@@ -82,13 +82,13 @@ void admon_libros_agregar(){
          if(array_de_libros[i].id_ejemplar==0)
          {
             printf("\t Titulo de libro: \n");
-            scanf("%s", &array_de_libros[i].titulo);
+            fgets(array_de_libros[i].titulo,100,stdin);
             while((c = getc(stdin)) != '\n' && c != EOF);
             printf("\t Nombre del autor: \n");
-            scanf("%s", &array_de_libros[i].autor);
+            fgets(array_de_libros[i].autor,150,stdin);
             while((c = getc(stdin)) != '\n' && c != EOF);
             printf("\t Nombre de la editorial: \n");
-            scanf("%s", &array_de_libros[i].editorial);
+            fgets(array_de_libros[i].editorial,100,stdin);
             while((c = getc(stdin)) != '\n' && c != EOF);
             printf("\t Anio de edicion:\n");
             scanf("%d", &array_de_libros[i].anio_edicion);
