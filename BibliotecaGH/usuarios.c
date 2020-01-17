@@ -1,85 +1,102 @@
 #include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include"datatypes.h"
+#include<iostream>
+#include "datatypes.h"
+using namespace std;
 
-#define MAT 10 					
-#define NOM 40
-#define CAR 40
-
-void agregarusuario();
-void listar();
-void buscar();  
-void modificar();
+extern const char *lista_carreras[];
 
 void admon_usuarios() {
-    
-    int opcion = 0;
-    do{
-		printf("Escoge\n");
-		printf("(1)Agregar usuario\n");
-		printf("(2)listar usuarios\n");
-		printf("(3)Busqueda de usuario\n");
-		printf("(4)Menu principal\n");
-        scanf("%d", &opcion);
-        switch(opcion){
-            case 1:
-                agregarusuario();
-                break;
-            case 2:
-                listar();
-                break;
-            case 3:
-                buscar();
-                break;
-        	default:
-                printf("Adios\n");
-        }
-        
-    }while(opcion != 0);
+	string producto[100];
+	string matricula[100];
+	int opc=0, i=0, k=0, menu, a;
+		while (opc!=4) {
 
-    return 0;
-}
-void agregarusuario(){
-    FILE *archivo;
-    archivo = fopen("usuarios.dat", "ab");
-    
-    usuario USUARIO;
-    printf("\nMATRICULA?: ");
-    scanf("%s", &usuario.matricula);
-    printf("\nNOMBRE?: ");
-    scanf("%s", &usuario.nombre);
-    printf("\nCARRERA?: ");
-    scanf("%s", &usuario.carrera);
-    
-    fwrite(&usuario, sizeof(USUARIO), 1, archivo);
-    fclose(archivo);
-    
-}
+		printf("1 agregar usuario\n");
+		printf("2 modificar usuario\n");
+		printf("3 listar\n");
+		printf("4 salir \n");
+		scanf("%d", &opc);
+			string nombre;
+			string nuevo;
+			string ID;
+			string IDN;
+			string estudio;
+		switch(opc)
+		{
+		case 1:
 
-void listar(){
-    FILE* archivo;
-    archivo = fopen("usuarios.dat", "rb");
-    usuario USUARIO;
-    while(fread(&USUARIO, sizeof(usuario), 1, archivo) != 0){
-        printf("%s %s %s\n",usuario.matricula,usuario.nombre,usuario.carrera);
-    }
-}
-void buscar(){
-    char nombre[40];
-    printf("NOMBRE: ");
-    scanf("%s", nombre);
-    
-    FILE *archivo;
-    archivo = fopen("usuarios.dat", "rb+");
-    usuario USUARIO;
-    int bandera = 1;
-    while(bandera){
-        fread(&USUARIO, sizeof(USUARIO), 1, archivo) != 0;
-        if(strcmp(nombre,usuario.nombre) == 0){
-        	printf("%s %s %s\n",usuario.matricula,usuario.nombre,usuario.carrera);
-            bandera = 0;
-        }
-    }
-    fclose(archivo);
+			cout<<"ingrese el nombre del usuario"<<endl;
+			cin>>nombre;
+			producto[i]=nombre;
+			i++;
+			cout<<"ingrese matricula"<<endl;
+			cin>>ID;
+			matricula[k]=ID;
+			k++;
+			cout<<"ingrese carrera"<<endl;
+			cin>>a;
+			//carreras[a]=estudio;
+			for(int j=0; j<=19; j++) {
+
+                  printf(lista_carreras[j]);
+	}
+		
+
+        break;
+
+		case 2:
+			cout<<"1 modificar nombre"<<endl;
+			cout<<"2 modificar matricula"<<endl;
+			cout<<"3 modificar carrera"<<endl;
+			cin>>menu;
+			switch (menu)
+			{
+				case 1:
+           	cout<<"ingrese nombre a modificar"<<endl;
+			cin>>nombre;
+			cout<<"ingrese nuevo nombre"<<endl;
+			cin>>nuevo;
+			for (int j=0; j<i; j++)
+		    {
+				if(producto[j] == nombre)
+				{
+                    producto[j] = nuevo;
+                    cout<<"usuario modificado correctamente"<<endl;
+
+				}
+
+	}
+	 break;
+	       case 2: cout<<"ingrese matricula a modifiar"<<endl;
+	       cin>>ID;
+	       cout<<"ingrese la nueva matricula"<<endl;
+	       cin>>IDN;
+	       for (int j=0; j<k; j++){
+
+if(matricula[j]==ID) {
+	matricula[j]=IDN;
+	cout<<"matricula modificada"<<endl;
+	}
+				}
+				break;
+				case 3:
+
+                 break;
+
+                    break;
+
+
+	 	   }
+
+		 case 3:
+                	for (int j=0; j<i; j++) {
+						cout<<(j+1)<<producto[j]<<endl;
+					}
+						for (int j=0; j<i; j++){
+							cout<<matricula[j]<<endl;
+							}
+
+
+ 		}
+	}
 }
