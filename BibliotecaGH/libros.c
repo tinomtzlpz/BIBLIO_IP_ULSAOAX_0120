@@ -56,13 +56,14 @@ void admon_libros(){
                         //printf("Se ha llamado al modulo de administracion de prestamos\n");
                         //Aqui estará la llamada real a la función de administracion de prestamos
                         //sleep(2);
+                        printf("Se ha llamado al modulo de buscar libro\n");
                         admon_libros_buscar();
                         break;
-            case '4':   
+            //case '4':   
                         //system("clear");
                         //eliminar libro//
                         //system("clear");
-                        break;
+                       // break;
             default:
                         return;
                         break;
@@ -106,9 +107,10 @@ void admon_libros_agregar(){
     }
 
 //Aqui se listaran los libros//
-void admon_libros_listar(){
-    char opcion = '0', c;
-    unsigned short int i=0;
+void admon_libros_listar()
+{
+    char c;
+    short int i=0;
 
     /* Mostrar los datos que están en el array correspondiente */
     //system("clear");
@@ -120,34 +122,91 @@ void admon_libros_listar(){
         printf("\t Titulo de libro: %s\n", array_de_libros[i].titulo); fflush(stdin);
         printf("\t Nombre del autor: %s\n", array_de_libros[i].autor); fflush(stdin);
         printf("\t Nombre de la editorial: %s\n", array_de_libros[i].editorial); fflush(stdin);
-        printf("\t Anio de edicion: %d\n", array_de_libros[i].anio_edicion); fflush(stdin);
-        printf("\t Identificador de ejemplar del libro: %d\n", array_de_libros[i].id_ejemplar); fflush(stdin);
+        printf("\t Anio de edicion: %u \n", array_de_libros[i].anio_edicion); fflush(stdin);
+        printf("\t Identificador de ejemplar del libro: %u \n", array_de_libros[i].id_ejemplar); fflush(stdin);
         printf("\t ISBN: %s\n", array_de_libros[i].isbn); fflush(stdin);
          }
     }
-    //sleep(8);
-    printf("\n\nCerrando archivo y regresando a modulo de libros"); fflush(stdin);
-    printf("\n"); fflush(stdin);
-        while((c = getc(stdin)) != '\n' && c != EOF);
-    }
+}
+   
+       
 
 //Aqui se buscan los libros//
-void admon_libros_buscar(){
-    int i,j,aux,comparar;
-    char comprobar[50];
-    
-    aux = 0;
-    printf("introuce el titulo el libro que deseas buscar: ");
-    fflush(stdin);
-    fgets(comprobar,50,stdin);
-    printf("\n");
-    for(i = 0; i < 50; i++){
-        for(j = 0; j < 50 && aux == 0; j++){
-            comparar = strcmp(comprobar,array_de_libros[i].titulo);
-            if(comparar == 0){
-                printf("el libro %s se encuentra en la estanteria y pertenece al autor %s.\n\n",array_de_libros[i].titulo,array_de_libros[i].autor);
-                aux = 1;
+void admon_libros_buscar()
+{
+    char c;
+    short int i=0;
+    /* Mostrar los datos que están en el array correspondiente */
+    //system("clear");}
+    short int ingreso;
+    short int elegir;
+    char palabra[100];
+    printf("\t[1] Buscar por ID Ejemplar \n ");
+    printf("\t[2] Buscar por ISBN \n");
+    printf("\t[3] Bucsar por Titulo\n");
+    scanf("%d", &elegir);
+    while((c = getc(stdin)) != '\n' && c != EOF);
+    switch(elegir)
+    {
+        case 1:
+            printf("ingresa el id ejemplar que quieres buscar");
+            scanf("%d",&ingreso);
+            while((c = getc(stdin)) != '\n' && c != EOF);
+            for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
+            {
+                 if (array_de_libros[i].id_ejemplar !=0 && ingreso==array_de_libros[i].id_ejemplar)
+                {
+                    printf("\t Titulo de libro: %s\n", array_de_libros[i].titulo); fflush(stdin);
+                    printf("\t Nombre del autor: %s\n", array_de_libros[i].autor); fflush(stdin);
+                    printf("\t Nombre de la editorial: %s\n", array_de_libros[i].editorial); fflush(stdin);
+                    printf("\t Anio de edicion: %d \n", array_de_libros[i].anio_edicion); fflush(stdin);
+                    printf("\t Identificador de ejemplar del libro: %d \n", array_de_libros[i].id_ejemplar); fflush(stdin);
+                    printf("\t ISBN: %s\n", array_de_libros[i].isbn); fflush(stdin);
+                    break;
+                 }
             }
-        }
+            break;
+        case 2:
+            printf("ingresa el ISBN que quieres buscar");
+            fgets(palabra,100,stdin);
+            while((c = getc(stdin)) != '\n' && c != EOF);
+            for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
+            {
+                 if (array_de_libros[i].id_ejemplar !=0 && (strcmp(palabra,array_de_libros[i].isbn))==0)
+                 {
+                    printf("\t Titulo de libro: %s\n", array_de_libros[i].titulo); fflush(stdin);
+                    printf("\t Nombre del autor: %s\n", array_de_libros[i].autor); fflush(stdin);
+                    printf("\t Nombre de la editorial: %s\n", array_de_libros[i].editorial); fflush(stdin);
+                    printf("\t Anio de edicion: %d \n", array_de_libros[i].anio_edicion); fflush(stdin);
+                    printf("\t Identificador de ejemplar del libro: %d \n", array_de_libros[i].id_ejemplar); fflush(stdin);
+                    printf("\t ISBN: %s\n", array_de_libros[i].isbn); fflush(stdin);
+                    break;
+                 }
+            }
+            break;
+            
+        case 3:
+            printf("ingresa el titulo que quieres buscar");
+            fgets(palabra,100,stdin);
+            while((c = getc(stdin)) != '\n' && c != EOF);
+            for(i=0; i < MAX_ELEMENTOS_ARRAY; i = i+1)
+            {
+                 if (array_de_libros[i].id_ejemplar != 0 && (strcmp(palabra,array_de_libros[i].isbn))==0)
+                 {
+                    printf("\t Titulo de libro: %s\n", array_de_libros[i].titulo); fflush(stdin);
+                    printf("\t Nombre del autor: %s\n", array_de_libros[i].autor); fflush(stdin);
+                    printf("\t Nombre de la editorial: %s\n", array_de_libros[i].editorial); fflush(stdin);
+                    printf("\t Anio de edicion: %d \n", array_de_libros[i].anio_edicion); fflush(stdin);
+                    printf("\t Identificador de ejemplar del libro: %d \n", array_de_libros[i].id_ejemplar); fflush(stdin);
+                    printf("\t ISBN: %s\n", array_de_libros[i].isbn); fflush(stdin);
+                    break;
+                    
+                 }
+            }
+            break;
+        default:
+            printf("OPCION INVALIDO");
+            break;
     }
-}
+    
+} 
